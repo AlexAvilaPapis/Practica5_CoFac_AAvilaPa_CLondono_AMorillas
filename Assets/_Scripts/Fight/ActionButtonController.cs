@@ -16,7 +16,9 @@ public class ActionButtonController : MonoBehaviour
 
     private CanvasGroup _canvasGroup;
 
-    private FightActionFactory _actionFactory;
+    public Action<FightCommandTypes> ButtonIsPressed;
+
+    //private FightActionFactory _actionFactory;
 
     //public CubeColor Cube;
 
@@ -24,7 +26,7 @@ public class ActionButtonController : MonoBehaviour
     void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        _actionFactory = new FightActionFactory();
+        //_actionFactory = new FightActionFactory();
     }
 
     private void Start()
@@ -74,5 +76,11 @@ public class ActionButtonController : MonoBehaviour
         {
             //Do ataque
         }
+
+        ButtonIsPressed?.Invoke(fightCommandType);
+
+        //CombatManager.Factory.GetCommand(fightCommandType, (Fighter)CombatManager.EntityManager.ActiveEntity);
+
+        //Debug.Log("el buton se ha preseao");
     }
 }

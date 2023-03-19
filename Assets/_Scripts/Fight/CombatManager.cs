@@ -41,11 +41,10 @@ public class CombatManager : MonoBehaviour
 
     }
 
-    public void DoAction(FightCommandTypes commandType)
-    {
-       
-
-    }
+    //public void DoAction(FightCommandTypes commandType)
+    //{
+    //    //DoAction(commandType + 2 parametros mas);
+    //}
 
     private void ChooseTarget(FightCommand _currentCommand)
     {
@@ -77,10 +76,26 @@ public class CombatManager : MonoBehaviour
         TargetChooser.StartChoose(possibleTargets);
     }
 
-    private void DoAction(Entity actor, Entity target, FightCommandTypes type)
+    public void DoAction (FightCommandTypes type) // (Entity actor, Entity target, FightCommandTypes type)
     {
-        
+        _factory.GetCommand(type, (Fighter)EntityManager.ActiveEntity);
+
+        Debug.Log("el buton se ha preseao");
     }
+
+    private void OnEnable()
+    {
+        ActionButtonController.ButtonIsPressed += DoAction;
+    }
+    private void OnDisable()
+    {
+        ActionButtonController.ButtonIsPressed -= DoAction;
+    }
+
+    //private void DoAction(Entity actor, Entity target, FightCommandTypes type)
+    //{
+
+    //}
 
     private void Undo()
     {

@@ -17,7 +17,6 @@ public class ActionButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         _colorButtonController.OnButtonPressed(_type);
-       
     }
     void Awake()
     {

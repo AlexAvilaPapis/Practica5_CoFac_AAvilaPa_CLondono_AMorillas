@@ -13,6 +13,7 @@ public class CommandAttack : FightCommand
     public CommandAttack(Entity entity) : base(entity)
     {
         Console.WriteLine("Ataque");
+        PossibleTargets = TargetTypes.Enemy;
     }
 
     public override void Excecute()
@@ -27,11 +28,13 @@ public class CommandAttack : FightCommand
     }
 }
 
+
 public class CommandBoostAttack : FightCommand
 {
     public CommandBoostAttack(Entity entity) : base(entity)
     {
         Console.WriteLine("BoostAtaque");
+        PossibleTargets = TargetTypes.Self;
     }
 
     public override void Excecute()
@@ -44,11 +47,13 @@ public class CommandBoostAttack : FightCommand
     }
 }
 
+
 public class CommandBoostDefense : FightCommand
 {
     public CommandBoostDefense(Entity entity) : base(entity)
     {
         Console.WriteLine("BoostDef");
+        PossibleTargets = TargetTypes.Self;
     }
 
     public override void Excecute()
@@ -61,11 +66,13 @@ public class CommandBoostDefense : FightCommand
     }
 }
 
+
 public class CommandHeal : FightCommand
 {
     public CommandHeal(Entity entity) : base(entity)
     {
         Console.WriteLine("Heal");
+        PossibleTargets = TargetTypes.Friend;
     }
 
     public override void Excecute()
@@ -78,11 +85,13 @@ public class CommandHeal : FightCommand
     }
 }
 
+
 public class CommandShield : FightCommand
 {
     public CommandShield(Entity entity) : base(entity)
     {
         Console.WriteLine("Shied");
+        PossibleTargets = TargetTypes.FriendNotSelf;
     }
 
     public override void Excecute()

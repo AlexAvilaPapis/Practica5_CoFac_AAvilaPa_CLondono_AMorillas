@@ -14,6 +14,8 @@ public class EntityManager : MonoBehaviour
     public Entity OtherEntity => Entities[++_currentIndex % Entities.Count];
 
     public Entity[] Enemies => Entities.Where(x => x.Team != ActiveEntity.Team).ToArray();
+    public Entity[] Friends => Entities.Where(x => x.Team == ActiveEntity.Team).ToArray();
+    public Entity[] FriendsNotSelf => Entities.Where(x => x.Team == ActiveEntity.Team && x != ActiveEntity).ToArray();
 
 
 

@@ -6,12 +6,22 @@ public abstract class FightCommand : Command
 {
     protected Fighter _selectedFighter;
 
+    public TargetTypes PossibleTargets;
+
     protected FightCommand(Entity entity) : base(entity)
     {
         //if (_entity is Fighter)
             _selectedFighter = entity as Fighter;
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
     //private void OnEnable()
     //{
     //    ChooseTarget.OnSelected += GetFighter;

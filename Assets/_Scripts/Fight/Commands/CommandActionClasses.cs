@@ -1,23 +1,39 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using UnityEngine;
 
-public class CommandAttack : CommandActionAbstract
+
+public class CommandAttack : FightCommand
 {
     float _currentHealth;
+
+    public CommandAttack(Entity entity) : base(entity)
+    {
+        Console.WriteLine("Ataque");
+    }
+
     public override void Excecute()
     {
         _currentHealth = _selectedFighter.CurrentHealth;
         _selectedFighter.TakeDamage(5);
     }
+
     public override void Undo()
     {
         _selectedFighter.CurrentHealth = _currentHealth;
     }
 }
 
-public class CommandBoostAttack : CommandActionAbstract
+public class CommandBoostAttack : FightCommand
 {
+    public CommandBoostAttack(Entity entity) : base(entity)
+    {
+        Console.WriteLine("BoostAtaque");
+    }
+
     public override void Excecute()
     {
         _selectedFighter.AddAttack(1);
@@ -28,8 +44,13 @@ public class CommandBoostAttack : CommandActionAbstract
     }
 }
 
-public class CommandBoostDefense : CommandActionAbstract
+public class CommandBoostDefense : FightCommand
 {
+    public CommandBoostDefense(Entity entity) : base(entity)
+    {
+        Console.WriteLine("BoostDef");
+    }
+
     public override void Excecute()
     {
         _selectedFighter.AddDefensePermanent(1);
@@ -40,8 +61,13 @@ public class CommandBoostDefense : CommandActionAbstract
     }
 }
 
-public class CommandHeal : CommandActionAbstract
+public class CommandHeal : FightCommand
 {
+    public CommandHeal(Entity entity) : base(entity)
+    {
+        Console.WriteLine("Heal");
+    }
+
     public override void Excecute()
     {
         _selectedFighter.CurrentHealth += 3;
@@ -52,8 +78,13 @@ public class CommandHeal : CommandActionAbstract
     }
 }
 
-public class CommandShield : CommandActionAbstract
+public class CommandShield : FightCommand
 {
+    public CommandShield(Entity entity) : base(entity)
+    {
+        Console.WriteLine("Shied");
+    }
+
     public override void Excecute()
     {
         _selectedFighter.AddDefense(5);
@@ -63,3 +94,4 @@ public class CommandShield : CommandActionAbstract
         _selectedFighter.AddDefense(-5);
     }
 }
+

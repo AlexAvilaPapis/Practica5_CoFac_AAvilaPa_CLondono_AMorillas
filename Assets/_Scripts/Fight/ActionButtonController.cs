@@ -16,15 +16,21 @@ public class ActionButtonController : MonoBehaviour
 
     private CanvasGroup _canvasGroup;
 
+    private FightActionFactory _actionFactory;
+
     //public CubeColor Cube;
 
     // Start is called before the first frame update
     void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
+        _actionFactory = new FightActionFactory();
     }
 
-    
+    private void Start()
+    {
+        MakeButtons();
+    }
 
     internal void ChooseTarget(Entity activeEntity)
     {
@@ -45,13 +51,28 @@ public class ActionButtonController : MonoBehaviour
         _canvasGroup.interactable = false;
     }
 
-   
+    void MakeButtons()
+    {
+        var commandTypes = PossibleCommands; //Obtener nombres de la factory
 
-  
+        foreach(var command in commandTypes)
+        {
+            MakeOneButton(command);
+        }
+    }
 
-    
+    private void MakeOneButton(FightCommandTypes type)
+    {
+        var butt = Instantiate(ActionButtonPrefab) as ActionButton;//?
+        butt.Init(type, this, Color.white);
+        butt.transform.SetParent(transform);
+    }
+
     public void OnButtonPressed(FightCommandTypes fightCommandType)
     {
-        
+        if (/*Botón atque presionado*/true)
+        {
+            //Do ataque
+        }
     }
 }

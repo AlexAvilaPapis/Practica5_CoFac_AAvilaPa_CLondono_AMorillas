@@ -875,7 +875,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.7
+  m_fontSize: 33.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1219,7 +1219,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.7
+  m_fontSize: 33.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1483,7 +1483,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.7
+  m_fontSize: 33.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1990,7 +1990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActionButtonPrefab: {fileID: 9121608995825621691, guid: f51b437152247744d97d7564cf79729e,
     type: 3}
-  PossibleCommands: 0000000001000000
+  PossibleCommands: 000000000100000002000000
   CombatManager: {fileID: 2062942663}
 --- !u!114 &2147182627
 MonoBehaviour:

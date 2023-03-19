@@ -31,7 +31,7 @@ public class Fighter : Entity
     }
 
     
-
+    // Cambiar stats de los Fighters --------------------------------
     public void TakeDamage(float damage)
     {
         float realDamage = damage - (BaseDefense + RoundDefense);
@@ -42,11 +42,6 @@ public class Fighter : Entity
         OnChange?.Invoke();
         if (CurrentHealth < 0)
             Die();
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 
     public void AddDefense(float amount)
@@ -77,6 +72,12 @@ public class Fighter : Entity
     {
         RoundSpeed += amount;
         OnChange?.Invoke();
+    }
+    //--------------------------------------------------------------
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 
     public void ResetFighter()

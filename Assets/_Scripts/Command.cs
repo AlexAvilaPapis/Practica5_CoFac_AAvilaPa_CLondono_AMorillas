@@ -6,7 +6,6 @@ public abstract class Command : ICommand
 {
     protected Entity _entity;
 
-
     protected Command(Entity entity)
     {
         _entity = entity;

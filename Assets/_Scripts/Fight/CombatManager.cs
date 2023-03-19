@@ -90,6 +90,5 @@ public class CombatManager : MonoBehaviour
             Debug.LogError("Selected is not entity");
             return;
         }
-     
     }
 }

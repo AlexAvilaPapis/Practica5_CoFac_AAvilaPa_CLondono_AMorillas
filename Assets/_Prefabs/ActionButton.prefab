@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7599660144643423079}
   - component: {fileID: 2017617512889721424}
   - component: {fileID: 9121608995825621691}
+  - component: {fileID: 3696166643033166236}
   m_Layer: 5
   m_Name: ActionButton
   m_TagString: Untagged
@@ -123,7 +124,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7599660144643423079}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3696166643033166236}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: ReproduceSound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Click
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &9121608995825621691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +149,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8d4a51c0e9d3f469b381378e0bc32d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3696166643033166236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657722697284093234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40772e0bd4e4f194eaaafa211876124e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Click
 --- !u!1 &3787008631365957674
 GameObject:
   m_ObjectHideFlags: 0

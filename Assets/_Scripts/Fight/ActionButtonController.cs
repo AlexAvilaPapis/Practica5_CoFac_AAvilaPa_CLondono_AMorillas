@@ -24,11 +24,9 @@ public class ActionButtonController : MonoBehaviour
 
     //public CubeColor Cube;
 
-    // Start is called before the first frame update
     void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        //_actionFactory = new FightActionFactory();
     }
 
     internal void ChooseTarget(Entity activeEntity)
@@ -52,7 +50,7 @@ public class ActionButtonController : MonoBehaviour
 
     void MakeButtons()
     {
-        var commandTypes = PossibleCommands; //Obtener nombres de la factory
+        var commandTypes = PossibleCommands;
 
         foreach (var command in commandTypes)
         {
@@ -75,16 +73,7 @@ public class ActionButtonController : MonoBehaviour
 
     public void OnButtonPressed(FightCommandTypes fightCommandType)
     {
-        if (/*Botón atque presionado*/true)
-        {
-            //Do ataque
-        }
-
         ButtonIsPressed?.Invoke(fightCommandType);
-
-        //CombatManager.Factory.GetCommand(fightCommandType, (Fighter)CombatManager.EntityManager.ActiveEntity);
-
-        //Debug.Log("el buton se ha preseao");
     }
 
     public void SetNewCommands(List<FightCommandTypes> commandList)
@@ -100,7 +89,6 @@ public class ActionButtonController : MonoBehaviour
         PossibleCommands.Clear();
 
         PossibleCommands.AddRange(commandList);
-        //PossibleCommands = commandList;
 
         MakeButtons();
     }

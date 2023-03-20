@@ -10,9 +10,7 @@ public abstract class FightCommand : Command
 
     public TargetTypes PossibleTargets;
 
-    protected FightCommand()
-    {
-    }
+    protected FightCommand() { }
 
     protected FightCommand(Entity entity) : base(entity)
     {

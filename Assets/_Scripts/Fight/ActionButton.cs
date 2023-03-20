@@ -23,10 +23,6 @@ public class ActionButton : MonoBehaviour, IPointerClickHandler
         _image = GetComponent<Image>();
         _text = GetComponentInChildren<TextMeshProUGUI>();
     }
-    void Start()
-    {
-        
-    }
 
     public void Init(FightCommandTypes type, ActionButtonController colorButtonController, Color color)
     {
@@ -35,7 +31,5 @@ public class ActionButton : MonoBehaviour, IPointerClickHandler
         _type = type;
          _colorButtonController = colorButtonController;
         _text.text = type.ToString(); ;
-    }
-
-  
+    }  
 }

@@ -86,14 +86,6 @@ public class CombatManager : MonoBehaviour
 
         ChooseTarget(currentCommand);
 
-        //newCommand.SetTarget(currentTarget);
-        
-        /*
-            - Elige target(?
-            - Realiza acción
-            - Next Turn                 
-         */
-
     }
 
     private void OnEnable()
@@ -104,11 +96,6 @@ public class CombatManager : MonoBehaviour
     {
         ActionButtonController.ButtonIsPressed -= DoAction;
     }
-
-    //private void DoAction(Entity actor, Entity target, FightCommandTypes type)
-    //{
-
-    //}
 
     private void Undo()
     {
@@ -154,7 +141,6 @@ public class CombatManager : MonoBehaviour
 
             Invoker.AddCommand(com);
         }
-
 
         NextTurn();
     }

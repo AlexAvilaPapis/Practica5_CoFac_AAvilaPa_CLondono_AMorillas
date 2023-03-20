@@ -174,17 +174,11 @@ namespace ReflectionFactory
 
         public TestCommand() { }
 
-        public TestCommand(Entity entity) : base(entity)
-        {
-        }
+        public TestCommand(Entity entity) : base(entity) { }
 
-        public override void Excecute()
-        {
-        }
+        public override void Excecute() { }
 
-        public override void Undo()
-        {
-        }
+        public override void Undo() { }
     }
 
 }

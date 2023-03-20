@@ -9,9 +9,7 @@ public abstract class Command : ICommand
 
     protected Entity _entity;
 
-    protected Command() 
-    { 
-    }
+    protected Command() { }
 
     protected Command(Entity entity)
     {

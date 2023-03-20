@@ -28,6 +28,8 @@ public class CombatManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Z))
             Undo();
+        if (Input.GetKeyDown(KeyCode.R))
+            Redo();
     }
 
     void StartBattle()
@@ -108,7 +110,20 @@ public class CombatManager : MonoBehaviour
 
     private void Undo()
     {
-        
+        if (!Invoker.CanUndo()) return;
+
+        Invoker.Undo();
+        EntityManager.SetPreviousEntity();
+        StartBattle();
+    } 
+    
+    private void Redo()
+    {
+        if (!Invoker.CanRedo()) return;
+
+        Invoker.Redo();
+        EntityManager.SetNextEntity();
+        StartBattle();
     }
 
 

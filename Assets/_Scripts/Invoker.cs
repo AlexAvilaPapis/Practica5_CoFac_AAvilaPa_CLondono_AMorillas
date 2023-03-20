@@ -64,11 +64,15 @@ public class Invoker : MonoBehaviour
         
     }
 
+    public static bool CanRedo()
+    {
+        return _currentIndex < CommandHistory.Count;
+    }
+
     public static void Redo()
     {
         if (_currentIndex < CommandHistory.Count)
-        {
-            
+        {            
             CommandHistory[_currentIndex].Excecute();
             _currentIndex++;
         }

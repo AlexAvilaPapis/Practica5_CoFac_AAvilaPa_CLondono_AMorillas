@@ -10,6 +10,7 @@ public enum FightCommandTypes
     Heal,
     Shield,
     RemoveShield,
+    Test
 }
 
 public enum TargetTypes

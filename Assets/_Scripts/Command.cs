@@ -1,10 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public abstract class Command : ICommand
 {
+    public abstract FightCommandTypes Type { get; }
+
     protected Entity _entity;
+
+    protected Command() 
+    { 
+    }
 
     protected Command(Entity entity)
     {

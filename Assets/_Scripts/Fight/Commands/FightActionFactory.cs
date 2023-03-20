@@ -1,44 +1,83 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
-
-public class FightActionFactory
+namespace ReflectionFactory
 {
-    public ICommand GetCommand(FightCommandTypes type, Fighter fighter)//?
+    public class FightActionFactory
     {
-        switch (type)
+        
+        //public ICommand GetCommand(FightCommandTypes type, Fighter fighter)//?
+        //{
+        //    switch (type)
+        //    {
+        //        case FightCommandTypes.Attack:
+        //            Debug.Log("attack");
+        //            return new CommandAttack(fighter);
+
+        //        case FightCommandTypes.BoostAttack:
+        //            Debug.Log("boost attack");
+        //            return new CommandBoostAttack(fighter);
+
+        //        case FightCommandTypes.BoostDefense:
+        //            Debug.Log("boost def");
+        //            return new CommandBoostDefense(fighter);
+
+        //        case FightCommandTypes.Heal:
+        //            Debug.Log("heal");
+        //            return new CommandHeal(fighter);
+
+        //        case FightCommandTypes.Shield:
+        //            Debug.Log("shield");
+        //            return new CommandShield(fighter);
+
+        //        case FightCommandTypes.RemoveShield:
+        //            Debug.Log("shield");
+        //            return new RemoveCommandShield(fighter);
+
+        //        default:
+        //            Debug.Log("na de na");
+        //            throw new NotSupportedException();
+
+        //    }
+        //}
+
+        private Dictionary<FightCommandTypes, Type> _fightCommandsByType;
+
+        public FightActionFactory()
         {
-            case FightCommandTypes.Attack:
-                Debug.Log("attack");
-                return new CommandAttack(fighter);
+            var fightCommands = Assembly.GetAssembly(typeof(ICommand)).GetTypes()
+                .Where(x => !x.IsInterface && typeof(ICommand).IsAssignableFrom(x) && !x.IsAbstract);            
 
-            case FightCommandTypes.BoostAttack:
-                Debug.Log("boost attack");
-                return new CommandBoostAttack(fighter);
+            _fightCommandsByType = new Dictionary<FightCommandTypes, Type>();
 
-            case FightCommandTypes.BoostDefense:
-                Debug.Log("boost def");
-                return new CommandBoostDefense(fighter);
+            foreach (var item in fightCommands)
+            {                
+                Debug.Log(item.ToString());
+                //object[] args = { Fighter.testInstance };
 
-            case FightCommandTypes.Heal:
-                Debug.Log("heal");
-                return new CommandHeal(fighter);
+                var tempCommand = Activator.CreateInstance(item /*args*/);
+                _fightCommandsByType.Add(((ICommand)tempCommand).Type, item);
 
-            case FightCommandTypes.Shield:
-                Debug.Log("shield");
-                return new CommandShield(fighter);
-
-            case FightCommandTypes.RemoveShield:
-                Debug.Log("shield");
-                return new RemoveCommandShield(fighter);
-
-            default:
-                Debug.Log("na de na");
-                throw new NotSupportedException();
-
+            }
         }
-    }
-}
 
+        public ICommand GetCommand(FightCommandTypes type, Fighter fighter)
+        {
+            if (_fightCommandsByType.ContainsKey(type))
+            {
+                object[] args = { fighter};
+
+                Type type1 = _fightCommandsByType[type];
+                return Activator.CreateInstance(type1, args) as ICommand;             
+            }
+            return null;
+        }
+
+
+    }
+
+}

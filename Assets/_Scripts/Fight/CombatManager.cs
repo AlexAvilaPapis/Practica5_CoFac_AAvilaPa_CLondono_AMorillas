@@ -5,6 +5,8 @@ using UnityEngine;
 
 using System.Linq;
 
+using ReflectionFactory;
+
 public class CombatManager : MonoBehaviour
 {
     public EntityManager EntityManager;

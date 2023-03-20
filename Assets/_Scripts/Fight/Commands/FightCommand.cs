@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public abstract class FightCommand : Command
@@ -9,31 +10,17 @@ public abstract class FightCommand : Command
 
     public TargetTypes PossibleTargets;
 
+    protected FightCommand()
+    {
+    }
+
     protected FightCommand(Entity entity) : base(entity)
     {
-        //if (_entity is Fighter)
-            _selectedFighter = entity as Fighter;
+        _selectedFighter = entity as Fighter;
     }
 
     public void SetTarget(Entity target)
     {
         _target = target as Fighter;
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    //private void OnEnable()
-    //{
-    //    ChooseTarget.OnSelected += GetFighter;
-    //}
-    //private void OnDisable()
-    //{
-    //    ChooseTarget.OnSelected -= GetFighter;
-    //}
 }

@@ -58,6 +58,8 @@ public class ActionButtonController : MonoBehaviour
         {
             MakeOneButton(command);
         }
+        
+        Show();
     }
 
     private void MakeOneButton(FightCommandTypes type)
@@ -97,7 +99,8 @@ public class ActionButtonController : MonoBehaviour
         CurrentButtons.Clear();
         PossibleCommands.Clear();
 
-        PossibleCommands = commandList;
+        PossibleCommands.AddRange(commandList);
+        //PossibleCommands = commandList;
 
         MakeButtons();
     }

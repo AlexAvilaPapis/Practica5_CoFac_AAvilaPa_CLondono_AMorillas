@@ -30,6 +30,10 @@ public class FightActionFactory
                 Debug.Log("shield");
                 return new CommandShield(fighter);
 
+            case FightCommandTypes.RemoveShield:
+                Debug.Log("shield");
+                return new RemoveCommandShield(fighter);
+
             default:
                 Debug.Log("na de na");
                 throw new NotSupportedException();

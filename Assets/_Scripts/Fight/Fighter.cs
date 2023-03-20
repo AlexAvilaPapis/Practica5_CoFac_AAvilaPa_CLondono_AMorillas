@@ -12,6 +12,8 @@ public class Fighter : Entity
     private float RoundDefense;
     public float Defense => BaseDefense + RoundDefense;
 
+    public bool HasShield;
+
     private float BaseAttack=10;
     private float RoundAttack;
     public float Attack => BaseAttack + RoundAttack;

@@ -19,7 +19,8 @@ public class CommandAttack : FightCommand
     public override void Excecute()
     {
         _currentHealth = _target.CurrentHealth;
-        _target.TakeDamage(5);
+        _target.TakeDamage(_selectedFighter.Attack);
+
     }
 
     public override void Undo()
@@ -97,10 +98,31 @@ public class CommandShield : FightCommand
     public override void Excecute()
     {
         _target.AddDefense(5);
+        _target.HasShield = true;
     }
     public override void Undo()
     {
         _target.AddDefense(-5);
+        _target.HasShield = false;
+    }
+}
+public class RemoveCommandShield : FightCommand
+{
+    public RemoveCommandShield(Entity entity) : base(entity)
+    {
+        Console.WriteLine("Shied");
+        PossibleTargets = TargetTypes.FriendNotSelf;
+    }
+
+    public override void Excecute()
+    {
+        _selectedFighter.AddDefense(-5);
+        _selectedFighter.HasShield = false;
+    }
+    public override void Undo()
+    {
+        _selectedFighter.AddDefense(+5);
+        _selectedFighter.HasShield = true;
     }
 }
 

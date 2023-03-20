@@ -15,7 +15,8 @@ public class CombatManager : MonoBehaviour
 
     private FightActionFactory _factory;
 
-    private Fighter currentTarget;
+    
+    private FightCommand currentCommand;
 
 
     void Start()
@@ -74,12 +75,12 @@ public class CombatManager : MonoBehaviour
 
     public void DoAction(FightCommandTypes type) // (Entity actor, Entity target, FightCommandTypes type)
     {
-        FightCommand newCommand = (FightCommand)_factory.GetCommand(type, (Fighter)EntityManager.ActiveEntity);
-        if (newCommand == null) throw new NotImplementedException();
+         currentCommand = (FightCommand)_factory.GetCommand(type, (Fighter)EntityManager.ActiveEntity);
+        if (currentCommand == null) throw new NotImplementedException();
 
         Debug.Log("el buton se ha preseao");
 
-        ChooseTarget((FightCommand)newCommand);
+        ChooseTarget(currentCommand);
 
         //newCommand.SetTarget(currentTarget);
         
@@ -107,13 +108,14 @@ public class CombatManager : MonoBehaviour
 
     private void Undo()
     {
-
+        
     }
 
 
     public void NextTurn()
     {
-
+        EntityManager.SetNextEntity();
+        StartBattle();
     }
 
     internal void TargetChosen(ISelectable entity)
@@ -124,8 +126,19 @@ public class CombatManager : MonoBehaviour
             return;
         }
 
-        currentTarget = entity as Fighter;
+        currentCommand.SetTarget(entity as Fighter);
+        Invoker.AddCommand(currentCommand);
+
+        if (((Fighter)EntityManager.ActiveEntity).HasShield)
+        {
+            var com = (FightCommand)_factory.GetCommand(FightCommandTypes.RemoveShield, (Fighter)EntityManager.ActiveEntity);
+            if (currentCommand == null) throw new NotImplementedException();
 
 
+            Invoker.AddCommand(com);
+        }
+
+
+        NextTurn();
     }
 }

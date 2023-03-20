@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class ActionButtonController : MonoBehaviour
 {
-   // public Color[] Colors;
+    // public Color[] Colors;
     public ActionButton ActionButtonPrefab;
 
-    public List<FightCommandTypes> PossibleCommands;
+    [SerializeField]
+    private List<FightCommandTypes> PossibleCommands;
 
     public CombatManager CombatManager;
 
@@ -27,11 +29,6 @@ public class ActionButtonController : MonoBehaviour
     {
         _canvasGroup = GetComponent<CanvasGroup>();
         //_actionFactory = new FightActionFactory();
-    }
-
-    private void Start()
-    {
-        MakeButtons();
     }
 
     internal void ChooseTarget(Entity activeEntity)
@@ -57,7 +54,7 @@ public class ActionButtonController : MonoBehaviour
     {
         var commandTypes = PossibleCommands; //Obtener nombres de la factory
 
-        foreach(var command in commandTypes)
+        foreach (var command in commandTypes)
         {
             MakeOneButton(command);
         }
@@ -68,6 +65,10 @@ public class ActionButtonController : MonoBehaviour
         var butt = Instantiate(ActionButtonPrefab) as ActionButton;//?
         butt.Init(type, this, Color.white);
         butt.transform.SetParent(transform);
+
+        if (CurrentButtons == null) CurrentButtons = new List<GameObject>();
+
+        CurrentButtons.Add(butt.gameObject);
     }
 
     public void OnButtonPressed(FightCommandTypes fightCommandType)
@@ -82,5 +83,22 @@ public class ActionButtonController : MonoBehaviour
         //CombatManager.Factory.GetCommand(fightCommandType, (Fighter)CombatManager.EntityManager.ActiveEntity);
 
         //Debug.Log("el buton se ha preseao");
+    }
+
+    public void SetNewCommands(List<FightCommandTypes> commandList)
+    {
+        if (CurrentButtons == null) CurrentButtons = new List<GameObject>();
+
+        foreach (var item in CurrentButtons)
+        {
+            Destroy(item);
+        }        
+
+        CurrentButtons.Clear();
+        PossibleCommands.Clear();
+
+        PossibleCommands = commandList;
+
+        MakeButtons();
     }
 }

@@ -9,10 +9,14 @@ public abstract class FightCommand : Command
 
     public TargetTypes PossibleTargets;
 
-    protected FightCommand(Entity entity, Entity target) : base(entity)
+    protected FightCommand(Entity entity) : base(entity)
     {
         //if (_entity is Fighter)
             _selectedFighter = entity as Fighter;
+    }
+
+    public void SetTarget(Entity target)
+    {
         _target = target as Fighter;
     }
 

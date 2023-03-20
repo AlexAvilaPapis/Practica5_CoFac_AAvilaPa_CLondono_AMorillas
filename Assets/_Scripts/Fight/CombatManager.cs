@@ -15,9 +15,9 @@ public class CombatManager : MonoBehaviour
 
     private FightActionFactory _factory;
 
-    
+    private Fighter currentTarget;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         _factory = new FightActionFactory();
@@ -30,15 +30,11 @@ public class CombatManager : MonoBehaviour
     }
 
     void StartBattle()
-    {
-        //var list = EntityManager.GetComponents<ISelectable>();
-        //TargetChooser.StartChoose(list);
+    {        
+        var activeEntity = (Fighter)EntityManager.ActiveEntity;
+        Stats.SetEntity(activeEntity);        
 
-        //ActionButtonController.ChooseTarget(EntityManager.ActiveEntity);
-
-
-
-
+        ActionButtonController.SetNewCommands(activeEntity.PossibleCommands);
     }
 
     //public void DoAction(FightCommandTypes commandType)
@@ -76,11 +72,23 @@ public class CombatManager : MonoBehaviour
         TargetChooser.StartChoose(possibleTargets);
     }
 
-    public void DoAction (FightCommandTypes type) // (Entity actor, Entity target, FightCommandTypes type)
+    public void DoAction(FightCommandTypes type) // (Entity actor, Entity target, FightCommandTypes type)
     {
-        _factory.GetCommand(type, (Fighter)EntityManager.ActiveEntity);
+        FightCommand newCommand = (FightCommand)_factory.GetCommand(type, (Fighter)EntityManager.ActiveEntity);
+        if (newCommand == null) throw new NotImplementedException();
 
         Debug.Log("el buton se ha preseao");
+
+        ChooseTarget((FightCommand)newCommand);
+
+        //newCommand.SetTarget(currentTarget);
+        
+        /*
+            - Elige target(?
+            - Realiza acción
+            - Next Turn                 
+         */
+
     }
 
     private void OnEnable()
@@ -99,21 +107,25 @@ public class CombatManager : MonoBehaviour
 
     private void Undo()
     {
-        
+
     }
 
 
     public void NextTurn()
     {
-        
+
     }
 
     internal void TargetChosen(ISelectable entity)
     {
-        if(!(entity is Entity))
+        if (!(entity is Entity))
         {
             Debug.LogError("Selected is not entity");
             return;
         }
+
+        currentTarget = entity as Fighter;
+
+
     }
 }

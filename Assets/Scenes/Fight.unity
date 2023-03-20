@@ -1990,7 +1990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActionButtonPrefab: {fileID: 9121608995825621691, guid: f51b437152247744d97d7564cf79729e,
     type: 3}
-  PossibleCommands: 000000000100000002000000
+  PossibleCommands: 
   CombatManager: {fileID: 2062942663}
 --- !u!114 &2147182627
 MonoBehaviour:

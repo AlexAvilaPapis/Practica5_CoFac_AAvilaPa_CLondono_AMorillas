@@ -18,13 +18,13 @@ public class CommandAttack : FightCommand
 
     public override void Excecute()
     {
-        _currentHealth = _selectedFighter.CurrentHealth;
-        _selectedFighter.TakeDamage(5);
+        _currentHealth = _target.CurrentHealth;
+        _target.TakeDamage(5);
     }
 
     public override void Undo()
     {
-        _selectedFighter.CurrentHealth = _currentHealth;
+        _target.CurrentHealth = _currentHealth;
     }
 }
 
@@ -77,11 +77,11 @@ public class CommandHeal : FightCommand
 
     public override void Excecute()
     {
-        _selectedFighter.CurrentHealth += 3;
+        _target.CurrentHealth += 3;
     }
     public override void Undo()
     {
-        _selectedFighter.CurrentHealth -= 3;
+        _target.CurrentHealth -= 3;
     }
 }
 
@@ -96,11 +96,11 @@ public class CommandShield : FightCommand
 
     public override void Excecute()
     {
-        _selectedFighter.AddDefense(5);
+        _target.AddDefense(5);
     }
     public override void Undo()
     {
-        _selectedFighter.AddDefense(-5);
+        _target.AddDefense(-5);
     }
 }
 

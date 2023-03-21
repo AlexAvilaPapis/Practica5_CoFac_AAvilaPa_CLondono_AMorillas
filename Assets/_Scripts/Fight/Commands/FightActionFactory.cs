@@ -59,7 +59,7 @@ namespace ReflectionFactory
                 Debug.Log(item.ToString());
                 //object[] args = { Fighter.testInstance };
 
-                var tempCommand = Activator.CreateInstance(item /*args*/);
+                var tempCommand = Activator.CreateInstance(item /*args*/);              //Examen Nota:
                 _fightCommandsByType.Add(((ICommand)tempCommand).Type, item);
 
             }
@@ -72,7 +72,11 @@ namespace ReflectionFactory
                 object[] args = { fighter};
 
                 Type type1 = _fightCommandsByType[type];
-                return Activator.CreateInstance(type1, args) as ICommand;             
+                return Activator.CreateInstance(type1, args) as ICommand;               //Examen Nota:
+                                                                                        //  Si quieres usar Activator.CreateInstance(Type type, param args[] args)
+                                                                                        // Los parametros són:
+                                                                                        //  ([Tipo de objeto], Constructor del objeto)
+                                                                                        // El constructor, si necesitas, lo tienes que poner en una array Object[] = {param1, param2}
             }
             return null;
         }

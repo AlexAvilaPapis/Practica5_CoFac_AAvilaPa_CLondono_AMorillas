@@ -11,7 +11,7 @@ public class StatsUI : MonoBehaviour
     public TextMeshProUGUI DefensePoints;
 
     private Fighter _fighter;
-    // Start is called before the first frame update
+    
     void OnEnable()
     {
         Fighter.OnChange += OnStatsChange;
@@ -24,14 +24,11 @@ public class StatsUI : MonoBehaviour
         ChooseTarget.OnSelected -= SetEntity;
     }
 
-    // Update is called once per frame
     public void SetEntity(Fighter fighter)
     {
         _fighter = fighter;
         UpdateStats(fighter);
     }
-
-     
 
     private void OnStatsChange()
     {
